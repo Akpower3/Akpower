@@ -153,6 +153,10 @@
             transition: background 0.1s ease;
         }
 
+        .track-row:hover {
+            background: rgba(255, 179, 0, 0.1);
+        }
+
         .track-row:active {
             background: rgba(255, 179, 0, 0.15);
         }
@@ -244,7 +248,7 @@
             
             <!-- Album 1 Card -->
             <div class="album-card" onclick="showTracks(1)">
-                <div class="album-art">📀</div>
+                <div class="album-art"><div>📀</div></div>
                 <h3>Mighty Track</h3>
                 <p>9 Tracks available <span class="action-arrow">▼</span></p>
             </div>
@@ -290,7 +294,7 @@
         </div>
     </div>
 
-    <!-- Persistent Music Player Footer (Fixed Typo) -->
+    <!-- Persistent Music Player Footer -->
     <div class="audio-player">
         <div class="now-playing">
             <strong id="player-title">No Track Selected</strong>
@@ -307,7 +311,7 @@
             1: {
                 title: "Mighty Track",
                 songs: [
-                    { name: "Winning It", artist: "A.K-Power", file: "Winning-it_by_A.K-Power.mp3" },
+                    { name: "Winning It", artist: "A.K-Power", file: "Winning-it_by_a.K-Power.mp3" },
                     { name: "I Repent", artist: "Ak Power", file: "I-Repent_by_Ak-Power.mp3" },
                     { name: "I'll Try", artist: "Ak Power", file: "I'll-try_by_Ak-Power.mp3" },
                     { name: "I'm Suffocating", artist: "Ak Power", file: "I'm-suffocating_by_Ak-Power.mp3" },
