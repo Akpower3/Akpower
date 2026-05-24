@@ -96,6 +96,15 @@
             margin: 0;
             color: #9ca3af;
             font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .action-arrow {
+            color: #ffb300;
+            font-size: 0.75rem;
         }
 
         /* Tracklist Drawer Style */
@@ -107,9 +116,17 @@
             border-radius: 15px;
             padding: 25px;
             margin-top: 30px;
-            display: none; 
             text-align: left;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Styled placeholder state before an album is picked */
+        .tracklist-placeholder {
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            color: #71717a;
+            text-align: center;
+            padding: 40px 20px;
+            font-style: italic;
         }
 
         .tracklist-title {
@@ -209,47 +226,47 @@
             
             <!-- Album 1 Card -->
             <div class="album-card" onclick="showTracks(1)">
-                <div class="album-art">📀</div>
+                <div class="album-art">自动化</div>
                 <h3>Mighty Track</h3>
-                <p>9 Tracks available</p>
+                <p>9 Tracks available <span class="action-arrow">▼</span></p>
             </div>
 
             <!-- Album 2 Card -->
             <div class="album-card" onclick="showTracks(2)">
                 <div class="album-art">💿</div>
                 <h3>Second Album</h3>
-                <p>Tracks coming soon</p>
+                <p>Tracks coming soon <span class="action-arrow">▼</span></p>
             </div>
 
             <!-- Album 3 Card -->
             <div class="album-card" onclick="showTracks(3)">
                 <div class="album-art">💿</div>
                 <h3>Third Album</h3>
-                <p>Tracks coming soon</p>
+                <p>Tracks coming soon <span class="action-arrow">▼</span></p>
             </div>
 
             <!-- Album 4 Card -->
             <div class="album-card" onclick="showTracks(4)">
                 <div class="album-art">💿</div>
                 <h3>Fourth Album</h3>
-                <p>Tracks coming soon</p>
+                <p>Tracks coming soon <span class="action-arrow">▼</span></p>
             </div>
 
             <!-- Album 5 Card -->
             <div class="album-card" onclick="showTracks(5)">
                 <div class="album-art">💿</div>
                 <h3>Fifth Album</h3>
-                <p>Tracks coming soon</p>
+                <p>Tracks coming soon <span class="action-arrow">▼</span></p>
             </div>
 
         </div>
 
-        <!-- The Target Container JavaScript uses to display selected tracks -->
-        <div id="tracklist-container" class="tracklist-display">
-            <!-- Dynamic lists populate here seamlessly -->
+        <!-- The Target Container starting with a clear instructional guide text -->
+        <div id="tracklist-container" class="tracklist-display tracklist-placeholder">
+            Select an album card above to view its tracklist and play songs.
         </div>
 
-        <!-- Integrated Legal Tribute Footer -->
+        <!-- Integrated Legal Tribute Footer Layout -->
         <div class="site-footer">
             Tribute: Crankson and Caroline | Audio: Suno Production
         </div>
@@ -258,33 +275,34 @@
     <!-- Persistent Music Player Footer -->
     <div class="audio-player">
         <div class="now-playing">
-            <strong id="player-title">Select an Album</strong>
-            <span id="player-artist">Choose a track to play</span>
+            <strong id="player-title">No Track Selected</strong>
+            <span id="player-artist">Use the tracklist to play music</span>
         </div>
         <audio id="global-player" controls></audio> 
     </div>
 
     <!-- JAVASCRIPT: THE DATABASE AND ENGINE -->
     <script>
-        // The master configuration array containing all 5 embedded albums
+        let currentActiveSongs = [];
+
         const musicDatabase = {
             1: {
                 title: "Mighty Track",
                 songs: [
-                    { name: "Winning it", file: "Winning-it_by_Ak-Power.mp3" },
-                    { name: "I Repent", file: "I-Repent_by_Ak-Power.mp3" },
-                    { name: "I'll try", file: "I'll-try_by_Ak-Power.mp3" },
-                    { name: "I won't lose it", file: "I-won't-lose-it_by_Ak-Power.mp3" },
-                    { name: "I'm suffocating", file: "I'm-suffocating_by_Ak-Power.mp3" },
-                    { name: "Petite Voleur", file: "Petite-Voleur_by_Thanielan_ft.Ak-Power_remix.mp3" },
-                    { name: "On holidays", file: "On-Holidays_by_Ak-Power_ft._Caro.mp3" },
-                    { name: "Something wild", file: "Something-wild_by_Ak-Power.mp3" },
-                    { name: "We Rolling", file: "We-Rolling_by_Ak-Power.mp3" }
+                    { name: "Winning It", artist: "A.K-Power", file: "Winning-it_by_A.K-Power.mp3" },
+                    { name: "I Repent", artist: "Ak Power", file: "I-Repent_by_Ak-Power.mp3" },
+                    { name: "I'll Try", artist: "Ak Power", file: "I'll-try_by_Ak-Power.mp3" },
+                    { name: "I'm Suffocating", artist: "Ak Power", file: "I'm-suffocating_by_Ak-Power.mp3" },
+                    { name: "I Won't Lose It", artist: "Ak Power", file: "I-won't-lose-it_by_Ak-Power.mp3" },
+                    { name: "On Holidays", artist: "Ak Power ft. Caro", file: "On-Holidays_by_Ak-Power_ft._Caro.mp3" },
+                    { name: "Something Wild", artist: "Ak Power", file: "Something-Wild_by_Ak-Power.mp3" },
+                    { name: "We Rolling (Drill)", artist: "Ak Power", file: "We-Rolling-drill_by_Ak-Power.mp3" },
+                    { name: "Petite Voleur (Remix)", artist: "Thanielan ft. Ak-Power", file: "Petite-Voleur_by_Thanielan_ft._Ak-Power_remix.mp3" }
                 ]
             },
             2: {
                 title: "Second Album",
-                songs: [] // Drop future song items inside here when ready!
+                songs: [] 
             },
             3: {
                 title: "Third Album",
@@ -296,25 +314,4 @@
             },
             5: {
                 title: "Fifth Album",
-                songs: []
-            }
-        };
-
-        // Handles rendering track elements without cutting off active music
-        function showTracks(albumId) {
-            const container = document.getElementById('tracklist-container');
-            const data = musicDatabase[albumId];
-            
-            if (!data) return;
-
-            // If an album doesn't have songs added yet, show a clean message
-            if (data.songs.length === 0) {
-                container.style.display = "block";
-                container.innerHTML = `
-                    <h3 class="tracklist-title">${data.title}</h3>
-                    <p style="color:#71717a; font-style:italic; margin: 10px 0 0 0;">New tracks are currently in development for this project. Stay tuned!</p>`;
-                container.scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-
-            container.style.display = "block";
+        
