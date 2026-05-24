@@ -3,218 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.K Power - Discography</title>
+    <title>A.K Power | Official Discography</title>
     <style>
-        /* Reset margins and set a modern dark theme */
-        body {
+        /* Modern Dark Mode Reset */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0b0b0e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0c0c12;
             color: #ffffff;
+            min-height: 100vh;
+            padding-bottom: 120px; /* Space so player doesn't block content */
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Header / Banner Styling */
+        /* Premium Header Banner */
         header {
+            padding: 50px 20px 30px 20px;
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, #14141c 0%, #0b0b0e 100%);
+            background: linear-gradient(180deg, #161624 0%, #0c0c12 100%);
         }
 
         header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: -0.5px;
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
             background: linear-gradient(45deg, #ffb300, #f77737);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
         header p {
-            color: #b3b3b3;
-            margin-top: 10px;
+            color: #a0a0aa;
             font-size: 1rem;
+            font-weight: 500;
         }
 
-        /* The Main Container */
-        .container {
-            max-width: 1100px;
+        .main-container {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px 160px 20px; 
+            padding: 0 20px;
         }
 
-        /* THE GRID - Optimised cleanly for mobile devices */
+        /* Section Titles */
+        .section-title {
+            font-size: 1.3rem;
+            color: #ffb300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 15px 0;
+            border-bottom: 1px solid rgba(255, 179, 0, 0.2);
+            padding-bottom: 8px;
+        }
+
+        /* Spotify-style Album Flex Grid */
         .album-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
         }
 
-        /* Individual Album Card Design */
         .album-card {
-            background-color: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 12px;
+            padding: 16px;
             text-align: center;
-            transition: all 0.2s ease;
             cursor: pointer;
-            color: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
         }
 
-        .album-card:active, .album-card:hover {
-            background-color: rgba(255, 179, 0, 0.08);
-            border-color: rgba(255, 179, 0, 0.5);
-            transform: scale(0.98);
+        /* Interactive card press effects */
+        .album-card:hover {
+            background: rgba(255, 179, 0, 0.06);
+            border-color: rgba(255, 179, 0, 0.4);
+            transform: translateY(-4px);
         }
 
-        /* Album Artwork Placeholder */
-        .album-art {
+        .album-card:active {
+            transform: scale(0.97);
+        }
+
+        .album-art-box {
             width: 100%;
             aspect-ratio: 1 / 1;
-            background-color: #27272a;
+            background: #222230;
             border-radius: 8px;
-            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-size: 2rem;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .album-card h3 {
-            margin: 5px 0 2px 0;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .album-card p {
-            margin: 0;
-            color: #9ca3af;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            color: #a0a0aa;
+        }
+
+        /* Dynamic Tracklist Hub Layout */
+        .tracklist-display {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 120px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* On-load instructional design hint */
+        .hub-placeholder {
+            border: 2px dashed rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 3px;
-        }
-
-        .action-arrow {
-            color: #ffb300;
-            font-size: 0.7rem;
-        }
-
-        /* Tracklist Drawer Style */
-        .tracklist-display {
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: left;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Styled placeholder state before an album is picked */
-        .tracklist-placeholder {
-            border: 2px dashed rgba(255, 255, 255, 0.1);
-            color: #71717a;
             text-align: center;
-            padding: 30px 15px;
+            color: #71717a;
             font-style: italic;
-            font-size: 0.9rem;
+            padding: 40px 20px;
         }
 
-        .tracklist-title {
-            color: #ffb300;
-            margin-top: 0;
-            border-bottom: 2px solid rgba(255, 179, 0, 0.2);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1.2rem;
+        .tracklist-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .track-row {
+        .track-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-            cursor: pointer;
+            padding: 14px 12px;
             border-radius: 8px;
-            transition: background 0.1s ease;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            transition: background 0.2s ease;
         }
 
-        .track-row:hover {
+        .track-item:hover {
             background: rgba(255, 179, 0, 0.1);
         }
 
-        .track-row:active {
+        .track-item:active {
             background: rgba(255, 179, 0, 0.15);
         }
 
-        .track-row span {
-            font-size: 0.95rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .track-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
             max-width: 80%;
         }
 
-        /* PERSISTENT FOOTER PLAYER */
-        .audio-player {
+        .track-title {
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-artist {
+            font-size: 0.8rem;
+            color: #a0a0aa;
+        }
+
+        .play-indicator {
+            color: #ffb300;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* PERSISTENT FLOATING AUDIO DOCK */
+        .bottom-audio-dock {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #14141c;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding: 12px 15px;
-            box-sizing: border-box;
+            background: #12121c;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            z-index: 999;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.6);
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Adjust positions perfectly for desktop displays */
-        @media(min-width: 600px) {
-            .audio-player {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            audio {
-                width: 50% !important;
-            }
-        }
-
-        .now-playing {
-            font-size: 0.9rem;
+        .now-playing-meta {
             text-align: left;
         }
 
-        .now-playing strong {
+        .now-playing-meta strong {
             display: block;
+            font-size: 1rem;
             color: #ffffff;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .now-playing span {
+        .now-playing-meta span {
             display: block;
-            color: #b3b3b3;
             font-size: 0.8rem;
+            color: #a0a0aa;
             margin-top: 2px;
         }
 
@@ -222,100 +236,116 @@
             width: 100%;
         }
 
-        /* Integrated Tribute Footer Layout */
-        .site-footer {
+        /* Desktop Responsive Layout override for Player Bar */
+        @media (min-width: 650px) {
+            .bottom-audio-dock {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 40px;
+            }
+            .now-playing-meta {
+                max-width: 35%;
+            }
+            audio {
+                width: 50%;
+                max-width: 550px;
+            }
+        }
+
+        /* Clean Album Footer Credits */
+        footer {
+            margin-top: 60px;
+            padding: 24px 20px;
             text-align: center;
-            color: #71717a;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            font-style: italic;
-            margin-top: 40px;
-            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #71717a;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
     <header>
         <h1>A.K Power</h1>
-        <p>Official Discography • 5 Albums Exploration</p>
+        <p>Explore Music & Releases</p>
     </header>
 
-    <div class="container">
-        <!-- The Album Grid Section -->
+    <div class="main-container">
+        
+        <h2 class="section-title">Select Discography</h2>
+        
+        <!-- Album Row Grid -->
         <div class="album-grid">
             
             <!-- Album 1 Card -->
-            <div class="album-card" onclick="showTracks(1)">
-                <div class="album-art"><div>📀</div></div>
+            <div class="album-card" onclick="loadAlbumTracks(1)">
+                <div class="album-art-box">🎸</div>
                 <h3>Mighty Track</h3>
-                <p>9 Tracks available <span class="action-arrow">▼</span></p>
+                <p>9 Songs Available</p>
             </div>
 
             <!-- Album 2 Card -->
-            <div class="album-card" onclick="showTracks(2)">
-                <div class="album-art">💿</div>
+            <div class="album-card" onclick="loadAlbumTracks(2)">
+                <div class="album-art-box">💿</div>
                 <h3>Second Album</h3>
-                <p>Coming soon <span class="action-arrow">▼</span></p>
+                <p>Coming Soon</p>
             </div>
 
             <!-- Album 3 Card -->
-            <div class="album-card" onclick="showTracks(3)">
-                <div class="album-art">💿</div>
+            <div class="album-card" onclick="loadAlbumTracks(3)">
+                <div class="album-art-box">💿</div>
                 <h3>Third Album</h3>
-                <p>Coming soon <span class="action-arrow">▼</span></p>
+                <p>Coming Soon</p>
             </div>
 
             <!-- Album 4 Card -->
-            <div class="album-card" onclick="showTracks(4)">
-                <div class="album-art">💿</div>
+            <div class="album-card" onclick="loadAlbumTracks(4)">
+                <div class="album-art-box">💿</div>
                 <h3>Fourth Album</h3>
-                <p>Coming soon <span class="action-arrow">▼</span></p>
+                <p>Coming Soon</p>
             </div>
 
             <!-- Album 5 Card -->
-            <div class="album-card" onclick="showTracks(5)">
-                <div class="album-art">💿</div>
+            <div class="album-card" onclick="loadAlbumTracks(5)">
+                <div class="album-art-box">💿</div>
                 <h3>Fifth Album</h3>
-                <p>Coming soon <span class="action-arrow">▼</span></p>
+                <p>Coming Soon</p>
             </div>
 
         </div>
 
-        <!-- The Target Container starting with a clear instructional guide text -->
-        <div id="tracklist-container" class="tracklist-display tracklist-placeholder">
-            Select an album card above to view its tracklist and play songs.
+        <h2 class="section-title">Tracklist Explorer</h2>
+
+        <!-- The Target Hub Area container loaded initially as a safe helper placeholder -->
+        <div id="hub-container" class="tracklist-display hub-placeholder">
+            Tap an album cover option above to load its tracks.
         </div>
 
-        <!-- Integrated Legal Tribute Footer Layout -->
-        <div class="site-footer">
+        <!-- Integrated Legal & Tribute Credits Footer -->
+        <footer>
             Tribute: Crankson and Caroline | Audio: Suno Production
-        </div>
+        </footer>
+
     </div>
 
-    <!-- Persistent Music Player Footer -->
-    <div class="audio-player">
-        <div class="now-playing">
-            <strong id="player-title">No Track Selected</strong>
-            <span id="player-artist">Use the tracklist to play music</span>
+    <!-- Persistent Music Streaming Floating Dock Banner -->
+    <div class="bottom-audio-dock">
+        <div class="now-playing-meta">
+            <strong id="dock-title">No Track Selected</strong>
+            <span id="dock-artist">Tap play on a song above</span>
         </div>
-        <audio id="global-player" controls></audio> 
+        <audio id="media-deck" controls></audio>
     </div>
 
-    <!-- JAVASCRIPT: THE DATABASE AND ENGINE -->
+    <!-- CORE MUSIC ENGINE JAVASCRIPT -->
     <script>
-        let currentActiveSongs = [];
+        // Track pointer stack link cache
+        let activeTracklistStack = [];
 
-        const musicDatabase = {
+        // Master media array map exactly calibrated with your GitHub file system names
+        const discographyDatabase = {
             1: {
-                title: "Mighty Track",
-                songs: [
-                    { name: "Winning It", artist: "A.K-Power", file: "Winning-it_by_a.K-Power.mp3" },
-                    { name: "I Repent", artist: "Ak Power", file: "I-Repent_by_Ak-Power.mp3" },
-                    { name: "I'll Try", artist: "Ak Power", file: "I'll-try_by_Ak-Power.mp3" },
-                    { name: "I'm Suffocating", artist: "Ak Power", file: "I'm-suffocating_by_Ak-Power.mp3" },
-                    { name: "I Won't Lose It", artist: "Ak Power", file: "I-won't-lose-it_by_Ak-Power.mp3" },
-                    { name: "On Holidays", artist: "Ak Power ft. Caro", file: "On-Holidays_by_Ak-Power_ft._Caro.mp3" },
-                    { name: "Something Wild", artist: "Ak Power", file: "Something-Wild_by_Ak-Power.mp3" },
         
