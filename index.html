@@ -13,11 +13,11 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #0c0c12;
             color: #ffffff;
             min-height: 100vh;
-            padding-bottom: 120px; /* Space so player doesn't block content */
+            padding-bottom: 140px;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -42,7 +42,6 @@
         header p {
             color: #a0a0aa;
             font-size: 1rem;
-            font-weight: 500;
         }
 
         .main-container {
@@ -65,8 +64,8 @@
         /* Spotify-style Album Flex Grid */
         .album-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
             margin-bottom: 35px;
         }
 
@@ -77,11 +76,10 @@
             padding: 16px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             user-select: none;
         }
 
-        /* Interactive card press effects */
         .album-card:hover {
             background: rgba(255, 179, 0, 0.06);
             border-color: rgba(255, 179, 0, 0.4);
@@ -100,13 +98,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .album-card h3 {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 4px;
             white-space: nowrap;
@@ -127,14 +125,12 @@
             padding: 24px;
             min-height: 120px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            scroll-margin-bottom: 150px; /* Leaves perfect spacing for bottom player dock */
         }
 
         /* On-load instructional design hint */
         .hub-placeholder {
             border: 2px dashed rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
             color: #71717a;
             font-style: italic;
@@ -144,7 +140,7 @@
         .tracklist-header {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #ffb300;
             margin-bottom: 15px;
             padding-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -165,23 +161,17 @@
             background: rgba(255, 179, 0, 0.1);
         }
 
-        .track-item:active {
-            background: rgba(255, 179, 0, 0.15);
-        }
-
         .track-info {
             display: flex;
             flex-direction: column;
             gap: 2px;
+            text-align: left;
             max-width: 80%;
         }
 
         .track-title {
             font-size: 1rem;
             font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .track-artist {
@@ -193,7 +183,6 @@
             color: #ffb300;
             font-weight: 700;
             font-size: 0.85rem;
-            letter-spacing: 0.5px;
         }
 
         /* PERSISTENT FLOATING AUDIO DOCK */
@@ -244,12 +233,8 @@
                 align-items: center;
                 padding: 18px 40px;
             }
-            .now-playing-meta {
-                max-width: 35%;
-            }
             audio {
                 width: 50%;
-                max-width: 550px;
             }
         }
 
@@ -270,7 +255,7 @@
     <!-- Header Section -->
     <header>
         <h1>A.K Power</h1>
-        <p>Explore Music & Releases</p>
+        <p>Official Multi-Album Discography</p>
     </header>
 
     <div class="main-container">
@@ -279,42 +264,31 @@
         
         <!-- Album Row Grid -->
         <div class="album-grid">
-            
-            <!-- Album 1 Card -->
             <div class="album-card" onclick="loadAlbumTracks(1)">
                 <div class="album-art-box">🎸</div>
                 <h3>Mighty Track</h3>
                 <p>9 Songs Available</p>
             </div>
-
-            <!-- Album 2 Card -->
             <div class="album-card" onclick="loadAlbumTracks(2)">
                 <div class="album-art-box">💿</div>
                 <h3>Second Album</h3>
                 <p>Coming Soon</p>
             </div>
-
-            <!-- Album 3 Card -->
-            <div class="album-card" onclick="loadAlbumTracks(3)">
+            <div class="album-card" onclick="showTracks(3)">
                 <div class="album-art-box">💿</div>
                 <h3>Third Album</h3>
                 <p>Coming Soon</p>
             </div>
-
-            <!-- Album 4 Card -->
-            <div class="album-card" onclick="loadAlbumTracks(4)">
+            <div class="album-card" onclick="showTracks(4)">
                 <div class="album-art-box">💿</div>
                 <h3>Fourth Album</h3>
                 <p>Coming Soon</p>
             </div>
-
-            <!-- Album 5 Card -->
-            <div class="album-card" onclick="loadAlbumTracks(5)">
+            <div class="album-card" onclick="showTracks(5)">
                 <div class="album-art-box">💿</div>
                 <h3>Fifth Album</h3>
                 <p>Coming Soon</p>
             </div>
-
         </div>
 
         <h2 class="section-title">Tracklist Explorer</h2>
@@ -324,7 +298,7 @@
             Tap an album cover option above to load its tracks.
         </div>
 
-        <!-- Integrated Legal & Tribute Credits Footer -->
+        <!-- Integrated Legal & Tribute Credits Footer Layout -->
         <footer>
             Tribute: Crankson and Caroline | Audio: Suno Production
         </footer>
@@ -342,10 +316,16 @@
 
     <!-- CORE MUSIC ENGINE JAVASCRIPT -->
     <script>
-        // Track pointer stack link cache
         let activeTracklistStack = [];
 
         // Master media array map exactly calibrated with your GitHub file system names
         const discographyDatabase = {
             1: {
-        
+                title: "Mighty Track",
+                songs: [
+                    { title: "Winning It", creator: "A.K-Power", filename: "Winning-it_by_a.K-Power.mp3" },
+                    { title: "I Repent", creator: "Ak Power", filename: "I-Repent_by_Ak-Power.mp3" },
+                    { title: "I'll Try", creator: "Ak Power", filename: "I'll-try_by_Ak-Power.mp3" },
+                    { title: "I'm Suffocating", creator: "Ak Power", filename: "I'm-suffocating_by_Ak-Power.mp3" },
+                    { title: "I Won't Lose It", creator: "Ak Power", filename: "I-won't-lose-it_by_Ak-Power.mp3" },
+    
