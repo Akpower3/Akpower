@@ -54,118 +54,70 @@
             font-weight: 400;
         }
 
-        /* Multi-Million Dollar Feature: Album Carousel Showcase */
-        .album-showcase-container {
-            max-width: 1100px;
-            margin: 0 auto 60px auto;
-            text-align: left;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-yellow);
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: block;
-        }
-
-        .album-navigation {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            scroll-behavior: smooth;
-        }
-
-        /* Hide horizontal scrollbar functionality */
-        .album-navigation::-webkit-scrollbar {
-            height: 4px;
-        }
-        .album-navigation::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .album-tab-card {
-            min-width: 200px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .album-tab-card:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-4px);
-            background: rgba(59, 130, 246, 0.02);
-        }
-
-        .album-tab-card.active {
-            border-color: var(--accent-yellow);
-            background: rgba(245, 158, 11, 0.04);
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.05);
-        }
-
-        .album-tab-art {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: #111827;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .album-tab-card h4 {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #ffffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .album-tab-card span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Dynamic Music Track Grid */
-        .main-content-area {
+        /* Container for the Downward Scrolling Architecture */
+        .discography-container {
             max-width: 1100px;
             margin: 0 auto;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Spacing between albums as you scroll down */
         }
 
-        .dynamic-album-heading {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            margin: 0 0 30px 0;
+        /* Individual Album Container Block */
+        .album-wrapper {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 30px;
+            transition: border-color 0.3s ease;
+        }
+
+        .album-wrapper:focus-within, .album-wrapper:hover {
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        /* Album Header Banner inside the vertical layout */
+        .album-header-banner {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 25px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
         }
 
-        .dynamic-album-heading::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-color), transparent);
+        .album-banner-art {
+            width: 80px;
+            height: 80px;
+            background: #111827;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
         }
 
+        .album-banner-details h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .album-banner-details span {
+            font-size: 0.9rem;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* Clean Downward Music Grid System */
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 25px;
         }
 
         /* Premium Track Card Box */
@@ -189,7 +141,7 @@
             border-color: rgba(59, 130, 246, 0.3);
         }
 
-        /* System Highlight Active Playing Card */
+        /* Highlight the active card playing audio */
         .track-card.playing {
             border-color: var(--accent-yellow) !important;
             box-shadow: 0 30px 60px rgba(245, 158, 11, 0.12) !important;
@@ -208,7 +160,7 @@
 
         .track-info h3 {
             margin: 0 0 4px 0;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #ffffff;
         }
@@ -217,7 +169,6 @@
             margin: 0 0 20px 0;
             color: var(--text-muted);
             font-size: 0.95rem;
-            letter-spacing: 0.03em;
         }
 
         audio {
@@ -236,7 +187,6 @@
             border-radius: 30px;
             font-weight: 600;
             font-size: 0.95rem;
-            letter-spacing: 0.02em;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             margin-top: auto;
         }
@@ -247,21 +197,17 @@
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
         }
 
-        /* Standby Status Template Display */
+        /* Luxury Placeholder Box for Upcoming Albums */
         .empty-state {
-            grid-column: 1 / -1;
-            padding: 80px 20px;
+            padding: 40px 20px;
             text-align: center;
-            background: var(--bg-card);
-            border: 1px dashed var(--border-color);
-            border-radius: 24px;
             color: var(--text-muted);
         }
 
         .empty-state h3 {
-            color: #ffffff;
-            margin: 0 0 10px 0;
-            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
         }
 
         /* Bottom Minimalist Footer */
@@ -287,30 +233,48 @@
         </div>
     </header>
 
-    <!-- Album Management Navigation Controller -->
-    <div class="album-showcase-container">
-        <span class="section-label">Discography Vault</span>
-        <div class="album-navigation" id="albumTabs">
-            <!-- Active Album containing your 9 songs -->
-            <div class="album-tab-card active" data-album-id="album-1">
-                <img src="images/cover1.png" alt="Mighty Track Cover" class="album-tab-art">
-                <h4>Mighty Track</h4>
-                <span>9 Tracks Installed</span>
-            </div>
-            <!-- Coming soon high-end placeholders (making up 5 total) -->
-            <div class="album-tab-card" data-album-id="album-2">
-                <div class="album-tab-art" style="background: linear-gradient(135deg, #1e293b, #0f172a);"></div>
-                <h4>Project Horizon</h4>
-                <span>Coming Soon</span>
-            </div>
-            <div class="album-tab-card" data-album-id="album-3">
-                <div class="album-tab-art" style="background: linear-gradient(135deg, #1e293b, #0f172a);"></div>
-                <h4>Neon Echoes</h4>
-                <span>Coming Soon</span>
-            </div>
-            <div class="album-tab-card" data-album-id="album-4">
-                <div class="album-tab-art" style="background: linear-gradient(135deg, #1e293b, #0f172a);"></div>
-                <h4>Acoustic Gold</h4>
-                <span>Coming Soon</span>
-            </div>
-            
+    <!-- Main Downward Scrolling Vault Container -->
+    <main class="discography-container" id="vaultContainer">
+        <!-- JavaScript loops through data structure and populates this dynamically -->
+    </main>
+
+    <!-- Structural Footer Asset -->
+    <footer>
+        Tribute to Crankson and Caroline &bull; Powered by Premium Digital Infrastructure
+    </footer>
+
+    <!-- JAVASCRIPT OBJECT ROUTER AND AUDIO MANAGER -->
+    <script>
+        // Central Repository holding your exact requested tracks vertically
+        const discographyData = [
+            {
+                id: "album-1",
+                title: "Mighty Track",
+                status: "Available Now",
+                bannerCover: "images/cover1.jpg",
+                tracks: [
+                    { title: "I'll Try", artist: "Ak Power", src: "I'll-try_by_Ak-Power.mp3", cover: "images/cover1.jpg" },
+                    { title: "I'm Suffocating", artist: "Ak Power", src: "I'm-suffocating_by_Ak-Power.mp3", cover: "images/cover2.jpg" },
+                    { title: "I Repent", artist: "Ak Power", src: "I-Repent_by_Ak-Power.mp3", cover: "images/cover3.jpg" },
+                    { title: "I Won't Lose It", artist: "Ak Power", src: "I-won't-lose-it_by_Ak-Power.mp3", cover: "images/cover4.jpg" },
+                    { title: "On Holidays", artist: "Ak Power ft. Caro", src: "On-Holidays_by_Ak-Power_ft._Caro.mp3", cover: "images/cover5.jpg" },
+                    { title: "Petite Voleur (Remix)", artist: "Thanielan ft. Ak Power", src: "Petite-Voleur_by_Thanielan_ft._Ak-Power_remix.mp3", cover: "images/cover6.jpg" },
+                    { title: "Something Wild", artist: "Ak Power", src: "Something-Wild_by_Ak-Power.mp3", cover: "images/cover7.jpg" },
+                    { title: "We Rolling (Drill)", artist: "Ak Power", src: "We-Rolling-drill_by_Ak-Power.mp3", cover: "images/cover8.jpg" },
+                    { title: "Winning It", artist: "A.K Power", src: "Winning-it_by_A.K-Power.mp3", cover: "images/cover9.jpg" }
+                ]
+            },
+            { id: "album-2", title: "Project Horizon", status: "Coming Soon", bannerCover: "", tracks: [] },
+            { id: "album-3", title: "Neon Echoes", status: "Coming Soon", bannerCover: "", tracks: [] },
+            { id: "album-4", title: "Acoustic Gold", status: "Coming Soon", bannerCover: "", tracks: [] },
+            { id: "album-5", title: "Velocity Remixes", status: "Coming Soon", bannerCover: "", tracks: [] }
+        ];
+
+        const vaultContainer = document.getElementById('vaultContainer');
+
+        // Master function to render everything cascading downwards
+        function renderDiscography() {
+            discographyData.forEach(album => {
+                // Create container wrapper for this specific album execution
+                const albumWrapper = document.createElement('section');
+        
