@@ -220,6 +220,51 @@
             letter-spacing: 0.05em;
             font-style: italic;
         }
+
+        /* ADVANCED LYRICS VAULT SYSTEM */
+        .lyrics-vault {
+            max-width: 1100px;
+            margin: 80px auto 0 auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 40px;
+        }
+        .lyrics-vault h2 {
+            font-size: 2rem;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .song-lyrics-block {
+            margin-bottom: 45px;
+        }
+        .song-lyrics-block h4 {
+            color: #ffffff;
+            font-size: 1.35rem;
+            margin: 0 0 4px 0;
+            font-weight: 600;
+        }
+        .sleek-genre-badge {
+            font-size: 0.8rem;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .song-lyrics-block p {
+            color: var(--text-muted);
+            white-space: pre-line;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
@@ -238,9 +283,108 @@
         <!-- JavaScript loops through data structure and populates this dynamically -->
     </main>
 
+    <!-- 🌟 GOOGLE ENGINE RICH TEXT LYRICS VAULT 🌟 -->
+    <section class="lyrics-vault">
+        <h2>Song Lyrics & Project Archives</h2>
+        
+        <!-- TRACK 1 -->
+        <div class="song-lyrics-block">
+            <h4>1. I'll Try</h4>
+            <div class="sleek-genre-badge">Alternative Rock / Melodic Synth</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "I'll Try" right here.
+                Line breaks are kept automatically.
+                
+                [Chorus]
+                Your chorus text goes here.
+            </p>
+        </div>
+
+        <!-- TRACK 2 -->
+        <div class="song-lyrics-block">
+            <h4>2. I'm Suffocating</h4>
+            <div class="sleek-genre-badge">Cinematic Pop / Electronic</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "I'm Suffocating" right here.
+            </p>
+        </div>
+
+                <!-- TRACK 3 -->
+        <div class="song-lyrics-block">
+            <h4>3. I Repent</h4>
+            <div class="sleek-genre-badge">Gospel / Orchestral Soul</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "I Repent" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 4 -->
+        <div class="song-lyrics-block">
+            <h4>4. I Won't Lose It</h4>
+            <div class="sleek-genre-badge">Modern Hip Hop / Trap</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "I Won't Lose It" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 5 -->
+        <div class="song-lyrics-block">
+            <h4>5. On Holidays (feat. Caro)</h4>
+            <div class="sleek-genre-badge">Afrobeats / Summer Dance</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "On Holidays" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 6 -->
+        <div class="song-lyrics-block">
+            <h4>6. Petite Voleur (Remix)</h4>
+            <div class="sleek-genre-badge">French Pop / Deep House</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "Petite Voleur" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 7 -->
+        <div class="song-lyrics-block">
+            <h4>7. Something Wild</h4>
+            <div class="sleek-genre-badge">Indie Folk / Acoustic Rock</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "Something Wild" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 8 -->
+        <div class="song-lyrics-block">
+            <h4>8. We Rolling (Drill)</h4>
+            <div class="sleek-genre-badge">UK Drill / Grime</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "We Rolling" right here.
+            </p>
+        </div>
+
+        <!-- TRACK 9 -->
+        <div class="song-lyrics-block">
+            <h4>9. Winning It</h4>
+            <div class="sleek-genre-badge">Epic Stadium Anthem / Synthwave</div>
+            <p>
+                [Verse 1]
+                Type your full lyrics for "Winning It" right here.
+            </p>
+        </div>
+    </section>
+
     <!-- Structural Footer Asset -->
     <footer>
-        Tribute to Crankson and Caroline &bull; Powered by Premium Digital Infrastructure
+        Tribute : Elvis, Desmond, yvii, stephhy, Crankson and Caroline &bull; Powered by Suno Digital Productions.
     </footer>
 
     <!-- JAVASCRIPT OBJECT ROUTER AND AUDIO MANAGER -->
@@ -275,6 +419,46 @@
         // Master function to render everything cascading downwards
         function renderDiscography() {
             discographyData.forEach(album => {
-                // Create container wrapper for this specific album execution
                 const albumWrapper = document.createElement('section');
-        
+                albumWrapper.className = 'album-wrapper';
+                albumWrapper.id = album.id;
+
+                let tracksHTML = '';
+                if (album.tracks.length === 0) {
+                    tracksHTML = `<div class="empty-state"><h3>${album.title}</h3><p>${album.status}</p></div>`;
+                } else {
+                    tracksHTML = `
+                        <div class="album-header-banner">
+                            <div class="album-banner-art"></div>
+                            <div class="album-banner-details">
+                                <h2>${album.title}</h2>
+                                <span>${album.status}</span>
+                            </div>
+                        </div>
+                        <div class="music-grid">
+                    `;
+                    album.tracks.forEach(track => {
+                        tracksHTML += `
+                            <div class="track-card">
+                                <img src="${track.cover}" class="album-art" alt="${track.title} Cover">
+                                <div class="track-info">
+                                    <h3>${track.title}</h3>
+                                    <p>${track.artist}</p>
+                                </div>
+                                <audio controls src="${track.src}"></audio>
+                                <a href="${track.src}" download class="download-btn">Download Track</a>
+                            </div>
+                        `;
+                    });
+                    tracksHTML += `</div>`;
+                }
+                albumWrapper.innerHTML = tracksHTML;
+                vaultContainer.appendChild(albumWrapper);
+            });
+        }
+
+        // Initialize the renderer
+        renderDiscography();
+    </script>
+</body>
+</html>
